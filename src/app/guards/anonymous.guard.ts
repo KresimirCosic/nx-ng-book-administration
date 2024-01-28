@@ -10,10 +10,7 @@ import { AppState } from '../store/state';
   providedIn: 'root',
 })
 export class AnonymousGuard {
-  constructor(
-    private store: Store<AppState>,
-    private router: Router,
-  ) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   canActivate():
     | boolean
@@ -28,7 +25,7 @@ export class AnonymousGuard {
         }
 
         return this.router.createUrlTree(['/']);
-      }),
+      })
     );
   }
 }
