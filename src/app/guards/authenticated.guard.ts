@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 
 import { selectUser } from '../store/authentication/selectors';
 import { AppState } from '../store/state';
+import { GuardResponse } from '../types/guard-response';
 import { Role } from '../types/role';
 
 @Injectable({
@@ -16,11 +17,7 @@ export class AuthenticatedGuard {
     private _router: Router
   ) {}
 
-  canActivate():
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  canActivate(): GuardResponse {
     return this._store.pipe(
       select(selectUser),
       map((user) => {
@@ -33,11 +30,7 @@ export class AuthenticatedGuard {
     );
   }
 
-  isAdmin():
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  isAdmin(): GuardResponse {
     return this._store.pipe(
       select(selectUser),
       map((user) => {
@@ -54,11 +47,7 @@ export class AuthenticatedGuard {
     );
   }
 
-  isUser():
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  isUser(): GuardResponse {
     return this._store.pipe(
       select(selectUser),
       map((user) => {
