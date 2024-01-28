@@ -1,19 +1,19 @@
 import { createReducer, on } from '@ngrx/store'
 import { cloneDeep } from 'lodash-es'
 
+import { User } from '../../models/user'
 import {
-  register,
-  registerSuccess,
-  registerFailure,
   login,
-  loginSuccess,
   loginFailure,
+  loginSuccess,
   logout,
-  logoutSuccess,
   logoutFailure,
+  logoutSuccess,
+  register,
+  registerFailure,
+  registerSuccess,
 } from './actions'
 import { AuthenticationState } from './state'
-import { User } from '../../models/user'
 
 export const initialState: AuthenticationState = new AuthenticationState()
 

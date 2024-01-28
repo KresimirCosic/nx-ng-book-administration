@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, map, mergeMap, of } from 'rxjs'
 
+import { AuthenticationService } from '../../services/authentication.service'
 import {
   login,
   loginFailure,
@@ -15,20 +17,19 @@ import {
   registerSuccess,
 } from './actions'
 
-import { AuthenticationService } from '../../services/authentication.service'
-
 @Injectable()
 export class AuthenticationEffects {
   constructor(
-    private actions$: Actions,
-    private authenticationService: AuthenticationService
+    private readonly _actions$: Actions,
+    private _authenticationService: AuthenticationService,
+    private _router: Router
   ) {}
 
   register$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(register),
       mergeMap(({ email, password, username }) =>
-        this.authenticationService.register(email, password, username).pipe(
+        this._authenticationService.register(email, password, username).pipe(
           map(() => registerSuccess()),
           catchError((error: HttpErrorResponse) => {
             return of(registerFailure({ error: error.message }))
@@ -39,11 +40,14 @@ export class AuthenticationEffects {
   )
 
   login$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(login),
       mergeMap(({ email, password }) =>
-        this.authenticationService.login(email, password).pipe(
-          map((user) => loginSuccess({ user })),
+        this._authenticationService.login(email, password).pipe(
+          map((user) => {
+            this._router.navigateByUrl('/')
+            return loginSuccess({ user })
+          }),
           catchError((error: HttpErrorResponse) => {
             return of(loginFailure({ error: error.message }))
           })
@@ -53,11 +57,12 @@ export class AuthenticationEffects {
   )
 
   logout$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(logout),
       mergeMap(() =>
-        this.authenticationService.logout().pipe(
+        this._authenticationService.logout().pipe(
           map(() => {
+            this._router.navigateByUrl('/login')
             return logoutSuccess()
           }),
           catchError((error: HttpErrorResponse) => {

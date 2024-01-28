@@ -1,1 +1,5 @@
-<p>home works!</p>
+<p-button label="Logout" (onClick)="logout()"></p-button>
+
+<ng-container *ngIf="user$ | async; let user">
+  <h1>{{ user.username }}</h1>
+</ng-container>

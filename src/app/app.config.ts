@@ -6,6 +6,7 @@ import { StoreModule, provideStore } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { appRoutes } from './app.routes'
+import { AuthenticationEffects } from './store/authentication/effects'
 import { authenticationReducer } from './store/authentication/reducer'
 
 export const appConfig: ApplicationConfig = {
@@ -18,8 +19,8 @@ export const appConfig: ApplicationConfig = {
       StoreModule.forRoot({
         authentication: authenticationReducer,
       }),
-      StoreDevtoolsModule.instrument(),
-      EffectsModule.forRoot([])
+      EffectsModule.forRoot([AuthenticationEffects]),
+      StoreDevtoolsModule.instrument()
     ),
   ],
 }
