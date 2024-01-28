@@ -9,7 +9,7 @@ import { User } from '../models/user'
   providedIn: 'root',
 })
 export class AuthenticationService extends APIService {
-  constructor(private HTTPClient: HttpClient) {
+  constructor(private _HTTPClient: HttpClient) {
     super('users')
   }
 
@@ -18,7 +18,7 @@ export class AuthenticationService extends APIService {
     password: string,
     username: string
   ): Observable<void> {
-    return this.HTTPClient.post<void>(`${this.baseURL}/register`, {
+    return this._HTTPClient.post<void>(`${this.baseURL}/register`, {
       email,
       password,
       username,
@@ -26,7 +26,7 @@ export class AuthenticationService extends APIService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.HTTPClient.post<User>(`${this.baseURL}`, {
+    return this._HTTPClient.post<User>(`${this.baseURL}`, {
       email,
       password,
     })
@@ -36,5 +36,9 @@ export class AuthenticationService extends APIService {
   logout(): Observable<void> {
     // return this.HTTPClient.post<void>(`${this.baseURL}/logout`, {})
     return of(void 0)
+  }
+
+  getUsers(): Observable<Array<User>> {
+    return this._HTTPClient.get<Array<User>>(`${this.baseURL}`)
   }
 }

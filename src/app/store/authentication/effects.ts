@@ -6,6 +6,9 @@ import { catchError, map, mergeMap, of } from 'rxjs'
 
 import { AuthenticationService } from '../../services/authentication.service'
 import {
+  getUsers,
+  getUsersFailure,
+  getUsersSuccess,
   login,
   loginFailure,
   loginSuccess,
@@ -67,6 +70,20 @@ export class AuthenticationEffects {
           }),
           catchError((error: HttpErrorResponse) => {
             return of(logoutFailure({ error: error.message }))
+          })
+        )
+      )
+    )
+  )
+
+  getUsers$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(getUsers),
+      mergeMap(() =>
+        this._authenticationService.getUsers().pipe(
+          map((users) => getUsersSuccess({ users })),
+          catchError((error: HttpErrorResponse) => {
+            return of(getUsersFailure({ error: error.message }))
           })
         )
       )
