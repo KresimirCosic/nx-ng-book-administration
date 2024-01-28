@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 
 import { selectUser } from '../store/authentication/selectors';
 import { AppState } from '../store/state';
+import { GuardResponse } from '../types/guard-response';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,7 @@ import { AppState } from '../store/state';
 export class AnonymousGuard {
   constructor(private store: Store<AppState>, private router: Router) {}
 
-  canActivate():
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  canActivate(): GuardResponse {
     return this.store.pipe(
       select(selectUser),
       map((user) => {
