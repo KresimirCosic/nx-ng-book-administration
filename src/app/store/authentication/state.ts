@@ -8,6 +8,9 @@ export class AuthenticationState {
     public loginError: string = '',
     public logoutIsLoading: boolean = false,
     public logoutError: string = '',
-    public user: User = new User()
+    public user: User = new User(),
+    public users: Array<User> = [],
+    public usersAreLoading: boolean = false,
+    public usersError: string = ''
   ) {}
 }

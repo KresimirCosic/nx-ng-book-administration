@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 
+import { getUsers } from 'src/app/store/authentication/actions'
 import { AppState } from 'src/app/store/state'
 
 @Component({
@@ -34,6 +35,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO
+    this.getUsers()
+  }
+
+  getUsers(): void {
+    this._store.dispatch(getUsers())
   }
 
   login(): void {
