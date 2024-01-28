@@ -1,7 +1,8 @@
 {
+  "logout": {},
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@domain.tld",
       "password": "strong_password",
       "username": "admin username",
@@ -11,7 +12,7 @@
       "deleted": false
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "user@domain.tld",
       "password": "weak_password",
       "username": "user username",
@@ -23,7 +24,7 @@
   ],
   "books": [
     {
-      "id": 1,
+      "id": "1",
       "author": "Chinua Achebe",
       "country": "Nigeria",
       "imageLink": "images/things-fall-apart.jpg",
@@ -37,7 +38,7 @@
       "deleted": false
     },
     {
-      "id": 2,
+      "id": "2",
       "author": "Hans Christian Andersen",
       "country": "Denmark",
       "imageLink": "images/fairy-tales.jpg",
@@ -51,7 +52,7 @@
       "deleted": false
     },
     {
-      "id": 3,
+      "id": "3",
       "author": "Dante Alighieri",
       "country": "Italy",
       "imageLink": "images/the-divine-comedy.jpg",
@@ -65,7 +66,7 @@
       "deleted": false
     },
     {
-      "id": 4,
+      "id": "4",
       "author": "Unknown",
       "country": "Sumer and Akkadian Empire",
       "imageLink": "images/the-epic-of-gilgamesh.jpg",
@@ -79,7 +80,7 @@
       "deleted": false
     },
     {
-      "id": 5,
+      "id": "5",
       "author": "Unknown",
       "country": "Achaemenid Empire",
       "imageLink": "images/the-book-of-job.jpg",
@@ -93,7 +94,7 @@
       "deleted": false
     },
     {
-      "id": 6,
+      "id": "6",
       "author": "Unknown",
       "country": "India/Iran/Iraq/Egypt/Tajikistan",
       "imageLink": "images/one-thousand-and-one-nights.jpg",
@@ -107,21 +108,21 @@
       "deleted": false
     },
     {
-      "id": 7,
+      "id": "7",
       "author": "Unknown",
       "country": "Iceland",
       "imageLink": "images/njals-saga.jpg",
       "language": "Old Norse",
       "link": "https://en.wikipedia.org/wiki/Nj%C3%A1ls_saga\n",
       "pages": 384,
-      "title": "Nj\u00e1l's Saga",
+      "title": "Njál's Saga",
       "year": 1350,
       "createdAt": "4/19/2022",
       "updatedAt": "5/10/2023",
       "deleted": false
     },
     {
-      "id": 8,
+      "id": "8",
       "author": "Jane Austen",
       "country": "United Kingdom",
       "imageLink": "images/pride-and-prejudice.jpg",
@@ -135,21 +136,21 @@
       "deleted": false
     },
     {
-      "id": 9,
-      "author": "Honor\u00e9 de Balzac",
+      "id": "9",
+      "author": "Honoré de Balzac",
       "country": "France",
       "imageLink": "images/le-pere-goriot.jpg",
       "language": "French",
       "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
       "pages": 443,
-      "title": "Le P\u00e8re Goriot",
+      "title": "Le Père Goriot",
       "year": 1835,
       "createdAt": "9/22/2022",
       "updatedAt": "10/10/2023",
       "deleted": false
     },
     {
-      "id": 10,
+      "id": "10",
       "author": "Samuel Beckett",
       "country": "Republic of Ireland",
       "imageLink": "images/molloy-malone-dies-the-unnamable.jpg",
