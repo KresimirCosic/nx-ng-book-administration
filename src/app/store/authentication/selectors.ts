@@ -1,38 +1,38 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store'
 
-import { AppState } from '../state';
+import { AppState } from '../state'
 
 export const selectAuthenticationFeature = (state: AppState) =>
-  state.authentication;
+  state.authentication
 
 export const selectRegisterIsLoading = createSelector(
   selectAuthenticationFeature,
-  (state) => state.registerIsLoading,
-);
+  (state) => state.registerIsLoading
+)
 export const selectRegisterError = createSelector(
   selectAuthenticationFeature,
-  (state) => state.registerError,
-);
+  (state) => state.registerError
+)
 
 export const selectLoginIsLoading = createSelector(
   selectAuthenticationFeature,
-  (state) => state.loginIsLoading,
-);
+  (state) => state.loginIsLoading
+)
 export const selectLoginError = createSelector(
   selectAuthenticationFeature,
-  (state) => state.loginError,
-);
+  (state) => state.loginError
+)
 
 export const selectLogoutIsLoading = createSelector(
   selectAuthenticationFeature,
-  (state) => state.logoutIsLoading,
-);
+  (state) => state.logoutIsLoading
+)
 export const selectLogoutError = createSelector(
   selectAuthenticationFeature,
-  (state) => state.logoutError,
-);
+  (state) => state.logoutError
+)
 
 export const selectUser = createSelector(
   selectAuthenticationFeature,
-  (state) => state.user,
-);
+  (state) => state.user
+)
