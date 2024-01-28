@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
 
@@ -7,7 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, ButtonModule, LayoutComponent],
+  imports: [ButtonModule, LayoutComponent],
   selector: 'nx-ng-book-administration-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
