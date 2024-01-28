@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 
 import { User } from '../models/user'
 import { APIService } from '../models/api-service'
+import { Role } from '../types/role'
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +27,15 @@ export class AuthenticationService extends APIService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.HTTPClient.post<User>(`${this.baseURL}/login`, {
-      email,
-      password,
-    })
+    // return this.HTTPClient.post<User>(`${this.baseURL}/login`, {
+    //   email,
+    //   password,
+    // })
+    return of<User>({ email, role: Role.ADMIN, username: 'my username' })
   }
 
   logout(): Observable<void> {
-    return this.HTTPClient.post<void>(`${this.baseURL}/logout`, {})
+    // return this.HTTPClient.post<void>(`${this.baseURL}/logout`, {})
+    return of(void 0)
   }
 }
