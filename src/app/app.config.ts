@@ -1,10 +1,25 @@
-import { ApplicationConfig } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
-import { provideStore } from '@ngrx/store';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { StoreModule, provideStore } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { appRoutes } from './app.routes';
+import { authenticationReducer } from './store/authentication/reducer';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideEffects(), provideStore(), provideRouter(appRoutes)],
+  providers: [
+    provideEffects(),
+    provideStore(),
+    provideRouter(appRoutes),
+    importProvidersFrom(
+      HttpClientModule,
+      StoreModule.forRoot({
+        authentication: authenticationReducer,
+      }),
+      StoreDevtoolsModule.instrument(),
+      EffectsModule.forRoot([])
+    ),
+  ],
 };
