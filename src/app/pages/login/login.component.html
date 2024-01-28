@@ -1,1 +1,17 @@
-<p-button label="Login" (onClick)="login()"></p-button>
+<form [formGroup]="loginFormGroup">
+  <input
+    type="text"
+    pInputText
+    formControlName="email"
+    required
+    placeholder="Email"
+  />
+  <input
+    type="password"
+    pInputText
+    formControlName="password"
+    required
+    placeholder="Password"
+  />
+  <p-button label="Login" (onClick)="login()"></p-button>
+</form>

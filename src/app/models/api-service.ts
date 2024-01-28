@@ -7,6 +7,6 @@ export abstract class APIService {
   protected baseURL: string
 
   constructor(endpoint: string = '') {
-    this.baseURL = `${this.protocol}://${this.domain}:${this.port}/api/${endpoint}`
+    this.baseURL = `${this.protocol}://${this.domain}:${this.port}/${endpoint}`
   }
 }
