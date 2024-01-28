@@ -1,14 +1,14 @@
-import { inject } from '@angular/core';
-import { Route } from '@angular/router';
+import { inject } from '@angular/core'
+import { Route } from '@angular/router'
 
-import { AnonymousGuard } from './guards/anonymous.guard';
-import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { AnonymousGuard } from './guards/anonymous.guard'
+import { AuthenticatedGuard } from './guards/authenticated.guard'
 
-import { AdminComponent } from './pages/admin/admin.component';
-import { BookComponent } from './pages/book/book.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { AdminComponent } from './pages/admin/admin.component'
+import { BookComponent } from './pages/book/book.component'
+import { HomeComponent } from './pages/home/home.component'
+import { LoginComponent } from './pages/login/login.component'
+import { RegisterComponent } from './pages/register/register.component'
 
 export const appRoutes: Route[] = [
   {
@@ -35,4 +35,4 @@ export const appRoutes: Route[] = [
     component: BookComponent,
     canActivate: [() => inject(AuthenticatedGuard).canActivate()],
   },
-];
+]

@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { map } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
+import { Store, select } from '@ngrx/store'
+import { map } from 'rxjs'
 
-import { selectUser } from '../store/authentication/selectors';
-import { AppState } from '../store/state';
-import { GuardResponse } from '../types/guard-response';
-import { Role } from '../types/role';
+import { selectUser } from '../store/authentication/selectors'
+import { AppState } from '../store/state'
+import { GuardResponse } from '../types/guard-response'
+import { Role } from '../types/role'
 
 @Injectable({
   providedIn: 'root',
@@ -22,12 +22,12 @@ export class AuthenticatedGuard {
       select(selectUser),
       map((user) => {
         if (user.email) {
-          return true;
+          return true
         }
 
-        return this._router.createUrlTree(['login']);
+        return this._router.createUrlTree(['login'])
       })
-    );
+    )
   }
 
   isAdmin(): GuardResponse {
@@ -35,16 +35,16 @@ export class AuthenticatedGuard {
       select(selectUser),
       map((user) => {
         if (!user.email) {
-          return this._router.createUrlTree(['login']);
+          return this._router.createUrlTree(['login'])
         }
 
         if (user.role === Role.ADMIN) {
-          return true;
+          return true
         }
 
-        return this._router.createUrlTree(['/']);
+        return this._router.createUrlTree(['/'])
       })
-    );
+    )
   }
 
   isUser(): GuardResponse {
@@ -52,15 +52,15 @@ export class AuthenticatedGuard {
       select(selectUser),
       map((user) => {
         if (!user.email) {
-          return this._router.createUrlTree(['login']);
+          return this._router.createUrlTree(['login'])
         }
 
         if (user.role === Role.USER) {
-          return true;
+          return true
         }
 
-        return this._router.createUrlTree(['/admin']);
+        return this._router.createUrlTree(['/admin'])
       })
-    );
+    )
   }
 }
