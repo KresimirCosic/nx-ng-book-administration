@@ -22,6 +22,9 @@ export const initialState: AuthenticationState = new AuthenticationState()
 
 export const authenticationReducer = createReducer(
   initialState,
+  /**
+   * Register
+   */
   on(register, (state) => {
     const clonedState = cloneDeep(state)
     return { ...clonedState, registerIsLoading: true }
@@ -34,6 +37,9 @@ export const authenticationReducer = createReducer(
     const clonedState = cloneDeep(state)
     return { ...clonedState, registerIsLoading: false, registerError: error }
   }),
+  /**
+   * Login
+   */
   on(login, (state) => {
     const clonedState = cloneDeep(state)
     return { ...clonedState, loginIsLoading: true }
@@ -46,6 +52,9 @@ export const authenticationReducer = createReducer(
     const clonedState = cloneDeep(state)
     return { ...clonedState, loginIsLoading: false, loginError: error }
   }),
+  /**
+   * Logout
+   */
   on(logout, (state) => {
     const clonedState = cloneDeep(state)
     return { ...clonedState, logoutIsLoading: true }
@@ -58,6 +67,9 @@ export const authenticationReducer = createReducer(
     const clonedState = cloneDeep(state)
     return { ...clonedState, logoutIsLoading: false, logoutError: error }
   }),
+  /**
+   * Users
+   */
   on(getUsers, (state) => {
     const clonedState = cloneDeep(state)
     return { ...clonedState, usersAreLoading: true }

@@ -45,8 +45,8 @@ export class AuthenticationEffects {
   login$ = createEffect(() =>
     this._actions$.pipe(
       ofType(login),
-      mergeMap(({ email, password }) =>
-        this._authenticationService.login(email, password).pipe(
+      mergeMap(({ id }) =>
+        this._authenticationService.login(id).pipe(
           map((user) => {
             this._router.navigateByUrl('/')
             return loginSuccess({ user })

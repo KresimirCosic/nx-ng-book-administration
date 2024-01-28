@@ -9,8 +9,11 @@ import {
 import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
+import { Observable, tap } from 'rxjs'
 
-import { getUsers } from 'src/app/store/authentication/actions'
+import { User } from 'src/app/models/user'
+import { getUsers, login } from 'src/app/store/authentication/actions'
+import { selectUsers } from 'src/app/store/authentication/selectors'
 import { AppState } from 'src/app/store/state'
 
 @Component({
@@ -21,12 +24,16 @@ import { AppState } from 'src/app/store/state'
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+  users$: Observable<Array<User>>
+
   loginFormGroup: FormGroup
 
   constructor(
     private readonly _store: Store<AppState>,
     private _formBuilder: FormBuilder
   ) {
+    this.users$ = this._store.select(selectUsers)
+
     this.loginFormGroup = this._formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -34,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO
     this.getUsers()
   }
 
@@ -43,11 +49,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    // this._store.dispatch(
-    //   login({
-    //     email: 'admin@domain.tld',
-    //     password: 'strong_password',
-    //   })
-    // )
+    const email = this.loginFormGroup.controls['email'].value as string
+    let existingUser = new User()
+
+    this.users$
+      .pipe(
+        tap((users) => {
+          users.forEach((user) => {
+            if (user.email === email) existingUser = user
+          })
+        })
+      )
+      .subscribe()
+
+    const { id } = existingUser
+
+    if (id) {
+      this._store.dispatch(login({ id }))
+    }
   }
 }
