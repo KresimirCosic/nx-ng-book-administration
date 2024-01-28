@@ -13,5 +13,9 @@
     required
     placeholder="Password"
   />
-  <p-button label="Login" (onClick)="login()"></p-button>
+  <p-button
+    label="Login"
+    (onClick)="login()"
+    [disabled]="!loginFormGroup.valid"
+  ></p-button>
 </form>

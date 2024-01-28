@@ -25,16 +25,11 @@ export class AuthenticationService extends APIService {
     })
   }
 
-  login(email: string, password: string): Observable<User> {
-    return this._HTTPClient.post<User>(`${this.baseURL}`, {
-      email,
-      password,
-    })
-    // return of<User>({ email, role: Role.ADMIN, username: 'my username' })
+  login(id: number): Observable<User> {
+    return this._HTTPClient.get<User>(`${this.baseURL}/${id}`)
   }
 
   logout(): Observable<void> {
-    // return this.HTTPClient.post<void>(`${this.baseURL}/logout`, {})
     return of(void 0)
   }
 
