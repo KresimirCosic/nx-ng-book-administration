@@ -1,9 +1,5 @@
 <div class="page-container">
-  <ng-container *ngIf="user$ | async as user">
-    <nx-ng-book-administration-header
-      *ngIf="user.email"
-    ></nx-ng-book-administration-header>
-  </ng-container>
+  <nx-ng-book-administration-header></nx-ng-book-administration-header>
 
   <nx-ng-book-administration-page>
     <router-outlet></router-outlet>

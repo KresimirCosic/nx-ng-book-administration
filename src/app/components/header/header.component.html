@@ -1,11 +1,19 @@
 <ng-container *ngIf="user$ | async as user">
   <header id="header" class="header">
     <a [routerLink]="['/']">
-      <p-button label="Home"> </p-button>
+      <p-button [raised]="true" label="Home"> </p-button>
+    </a>
+    <a [routerLink]="['/login']" *ngIf="!user.email">
+      <p-button [raised]="true" label="Login"> </p-button>
     </a>
     <a *ngIf="isAdmin" [routerLink]="['/admin']">
-      <p-button label="Admin"> </p-button>
+      <p-button [raised]="true" label="Admin"> </p-button>
     </a>
-    <p-button label="Logout" (onClick)="logout()"></p-button>
+    <p-button
+      [raised]="true"
+      label="Logout"
+      (onClick)="logout()"
+      *ngIf="user.email"
+    ></p-button>
   </header>
 </ng-container>
