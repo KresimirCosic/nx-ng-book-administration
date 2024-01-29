@@ -17,7 +17,7 @@ export class BooksService extends APIService {
     return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`)
   }
 
-  getBook(id: number): Observable<Book> {
+  getBook(id: string): Observable<Book> {
     return this._HTTPClient.get<Book>(`${this.baseURL}/${id}`)
   }
 }

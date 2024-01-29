@@ -13,7 +13,7 @@ const createActionName = (actionName: string): string => {
  */
 export const getBook = createAction(
   createActionName('Get Book'),
-  props<{ id: number }>()
+  props<{ id: string }>()
 )
 export const getBookSuccess = createAction(
   createActionName('Get Book Success'),
