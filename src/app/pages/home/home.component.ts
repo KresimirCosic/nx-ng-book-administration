@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 
-import { logout } from 'src/app/store/authentication/actions'
 import { getBooks } from 'src/app/store/books/actions'
 import { AppState } from 'src/app/store/state'
 
@@ -23,9 +22,5 @@ export class HomeComponent implements OnInit {
 
   getBooks(): void {
     this._store.dispatch(getBooks())
-  }
-
-  logout(): void {
-    this._store.dispatch(logout())
   }
 }

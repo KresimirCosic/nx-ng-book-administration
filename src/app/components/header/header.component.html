@@ -1,0 +1,8 @@
+<ng-container *ngIf="user$ | async as user">
+  <header id="header" class="header" *ngIf="user.email">
+    <a *ngIf="isAdmin" [routerLink]="['/admin']">
+      <p-button label="Admin"> </p-button>
+    </a>
+    <p-button label="Logout" (onClick)="logout()"></p-button>
+  </header>
+</ng-container>
