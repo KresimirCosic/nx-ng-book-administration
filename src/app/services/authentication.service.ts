@@ -25,7 +25,7 @@ export class AuthenticationService extends APIService {
     })
   }
 
-  login(id: number): Observable<User> {
+  login(id: string): Observable<User> {
     return this._HTTPClient.get<User>(`${this.baseURL}/${id}`)
   }
 
