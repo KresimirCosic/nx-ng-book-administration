@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http'
 import { ApplicationConfig, importProvidersFrom } from '@angular/core'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { provideRouter } from '@angular/router'
 import { EffectsModule, provideEffects } from '@ngrx/effects'
 import { StoreModule, provideStore } from '@ngrx/store'
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideRouter(appRoutes),
     importProvidersFrom(
+      BrowserAnimationsModule,
       HttpClientModule,
       StoreModule.forRoot({
         authentication: authenticationReducer,
