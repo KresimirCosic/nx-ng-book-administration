@@ -5,11 +5,12 @@ import { ButtonModule } from 'primeng/button'
 
 import { getBooks } from 'src/app/store/books/actions'
 import { AppState } from 'src/app/store/state'
+import { BookListComponent } from 'src/app/components/book-list/book-list.component'
 
 @Component({
   selector: 'nx-ng-book-administration-home',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, BookListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

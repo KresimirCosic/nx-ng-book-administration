@@ -1,0 +1,20 @@
+.book-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 0.5146rem + 2.0712vw, 3rem) 1%;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+
+  &-item {
+    flex: 0 0 100%;
+
+    @media (min-width: 768px) {
+      flex: 0 0 49.5%;
+    }
+
+    @media (min-width: 1280px) {
+      flex: 0 0 24.25%;
+    }
+  }
+}
