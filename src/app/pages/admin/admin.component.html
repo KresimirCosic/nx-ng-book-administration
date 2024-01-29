@@ -1,1 +1,37 @@
-<p>admin works!</p>
+<form
+  id="create-book-form"
+  class="create-book-form"
+  [formGroup]="createBookFormGroup"
+>
+  <input type="text" pInputText formControlName="title" placeholder="Title" />
+  <input
+    type="text"
+    pInputText
+    formControlName="language"
+    placeholder="Language"
+  />
+  <input
+    type="number"
+    pInputText
+    formControlName="year"
+    placeholder="Year"
+    min="1"
+  />
+  <input type="text" pInputText formControlName="author" placeholder="Author" />
+  <input
+    type="text"
+    pInputText
+    formControlName="country"
+    placeholder="Country"
+  />
+  <input
+    type="number"
+    pInputText
+    formControlName="pages"
+    placeholder="Pages"
+    min="1"
+  />
+  <p-button [disabled]="!createBookFormGroup.valid" (onClick)="createBook()"
+    >Create book</p-button
+  >
+</form>
