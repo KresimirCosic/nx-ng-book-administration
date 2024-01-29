@@ -9,10 +9,31 @@
           />
         </ng-template>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit
-          nesciunt dolorum incidunt, illum tempore porro nam consequatur...
-        </p>
+        <ng-template pTemplate="title">
+          <h3>{{ book.title }}</h3>
+        </ng-template>
+
+        <ng-template pTemplate="subtitle">
+          <h6>Written in {{ book.language }} ({{ book.year }})</h6>
+          <h6>{{ book.pages }} pages</h6>
+        </ng-template>
+
+        <ng-template pTemplate="content">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit
+            nesciunt dolorum incidunt, illum tempore porro nam consequatur...
+          </p>
+        </ng-template>
+
+        <ng-container *ngIf="user$ | async as user">
+          <ng-container *ngIf="user.email">
+            <ng-template pTemplate="footer">
+              <a [routerLink]="['/', book.id]">
+                <p-button [raised]="true" label="View"></p-button>
+              </a>
+            </ng-template>
+          </ng-container>
+        </ng-container>
       </p-card>
     </li>
   </ng-container>

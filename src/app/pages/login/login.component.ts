@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
+import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly _store: Store<AppState>,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _router: Router
   ) {
     this.users$ = this._store.select(selectUsers)
 
@@ -67,5 +69,9 @@ export class LoginComponent implements OnInit {
     if (id) {
       this._store.dispatch(login({ id }))
     }
+  }
+
+  navigateHome(): void {
+    this._router.navigateByUrl('/')
   }
 }

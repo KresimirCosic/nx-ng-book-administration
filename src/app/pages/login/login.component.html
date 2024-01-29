@@ -15,7 +15,9 @@
   />
   <p-button
     label="Login"
+    type="submit"
     (onClick)="login()"
     [disabled]="!loginFormGroup.valid"
   ></p-button>
+  <p-button (onClick)="navigateHome()">Continue as guest</p-button>
 </form>
