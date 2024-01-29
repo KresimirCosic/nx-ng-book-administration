@@ -1,5 +1,8 @@
 <ng-container *ngIf="user$ | async as user">
   <header id="header" class="header">
+    <a [routerLink]="['/']">
+      <p-button label="Home"> </p-button>
+    </a>
     <a *ngIf="isAdmin" [routerLink]="['/admin']">
       <p-button label="Admin"> </p-button>
     </a>
