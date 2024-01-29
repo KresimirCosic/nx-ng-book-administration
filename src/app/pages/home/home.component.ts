@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 
 import { logout } from 'src/app/store/authentication/actions'
+import { getBooks } from 'src/app/store/books/actions'
 import { AppState } from 'src/app/store/state'
 
 @Component({
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   getBooks(): void {
-    // TODO
+    this._store.dispatch(getBooks())
   }
 
   logout(): void {
