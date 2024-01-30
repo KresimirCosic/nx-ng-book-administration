@@ -7,8 +7,10 @@ import {
   Validators,
 } from '@angular/forms'
 import { Store } from '@ngrx/store'
+import { ConfirmationService, MessageService } from 'primeng/api'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
+import { ToastModule } from 'primeng/toast'
 import { Observable } from 'rxjs'
 
 import { Book, CreateBookForm } from 'src/app/models/book'
@@ -19,7 +21,13 @@ import { AppState } from 'src/app/store/state'
 @Component({
   selector: 'nx-ng-book-administration-admin',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule, ButtonModule],
+  imports: [
+    CommonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    ToastModule,
+  ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss',
 })
@@ -30,7 +38,9 @@ export class AdminComponent {
 
   constructor(
     private readonly _store: Store<AppState>,
-    private _formBuilder: NonNullableFormBuilder
+    private _formBuilder: NonNullableFormBuilder,
+    private _confirmationService: ConfirmationService,
+    private _messageService: MessageService
   ) {
     this.books$ = this._store.select(selectBooks)
 
@@ -50,6 +60,12 @@ export class AdminComponent {
   createBook(): void {
     const { title, language, year, author, country, pages } =
       this.createBookFormGroup.controls
+
+    this._messageService.add({
+      severity: 'info',
+      summary: 'Confirmed',
+      detail: 'Book created',
+    })
 
     this._store.dispatch(
       createBook({
