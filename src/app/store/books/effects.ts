@@ -14,6 +14,8 @@ import {
   getBooks,
   getBooksFailure,
   getBooksSuccess,
+  updateBook,
+  updateBookSuccess,
 } from './actions'
 
 @Injectable()
@@ -27,8 +29,8 @@ export class BooksEffects {
   createBook$ = createEffect(() =>
     this._actions$.pipe(
       ofType(createBook),
-      mergeMap(({ book }) =>
-        this._booksService.createBook(book).pipe(
+      mergeMap(({ book }) => {
+        return this._booksService.createBook(book).pipe(
           map((book) => {
             return createBookSuccess({ book })
           }),
@@ -36,15 +38,15 @@ export class BooksEffects {
             return of(getBookFailure({ error: error.message }))
           })
         )
-      )
+      })
     )
   )
 
   getBook$ = createEffect(() =>
     this._actions$.pipe(
       ofType(getBook),
-      mergeMap(({ id }) =>
-        this._booksService.getBook(id).pipe(
+      mergeMap(({ id }) => {
+        return this._booksService.getBook(id).pipe(
           map((book) => {
             return getBookSuccess({ book })
           }),
@@ -52,15 +54,31 @@ export class BooksEffects {
             return of(getBookFailure({ error: error.message }))
           })
         )
-      )
+      })
+    )
+  )
+
+  updateBook$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(updateBook),
+      mergeMap(({ id, book }) => {
+        return this._booksService.updateBook(id, book).pipe(
+          map((book) => {
+            return updateBookSuccess({ book })
+          }),
+          catchError((error: HttpErrorResponse) => {
+            return of(getBookFailure({ error: error.message }))
+          })
+        )
+      })
     )
   )
 
   getBooks$ = createEffect(() =>
     this._actions$.pipe(
       ofType(getBooks),
-      mergeMap(() =>
-        this._booksService.getBooks().pipe(
+      mergeMap(() => {
+        return this._booksService.getBooks().pipe(
           map((books) => {
             return getBooksSuccess({ books })
           }),
@@ -68,7 +86,7 @@ export class BooksEffects {
             return of(getBooksFailure({ error: error.message }))
           })
         )
-      )
+      })
     )
   )
 }

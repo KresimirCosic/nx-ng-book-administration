@@ -51,32 +51,22 @@
       "deleted": false
     },
     {
-      "id": "3",
+      "title": "The Divine Comedy",
+      "language": "Italian",
+      "year": 1315,
       "author": "Dante Alighieri",
       "country": "Italy",
-      "imageLink": "images/the-divine-comedy.jpg",
-      "language": "Italian",
-      "link": "https://en.wikipedia.org/wiki/Divine_Comedy\n",
       "pages": 928,
-      "title": "The Divine Comedy",
-      "year": 1315,
-      "createdAt": "1/14/2022",
-      "updatedAt": "7/11/2023",
-      "deleted": false
+      "id": "3"
     },
     {
-      "id": "4",
+      "title": "The Epic Of Gilgamesh",
+      "language": "Akkadian",
+      "year": -1700,
       "author": "Unknown",
       "country": "Sumer and Akkadian Empire",
-      "imageLink": "images/the-epic-of-gilgamesh.jpg",
-      "language": "Akkadian",
-      "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
       "pages": 160,
-      "title": "The Epic Of Gilgamesh",
-      "year": -1700,
-      "createdAt": "1/11/2022",
-      "updatedAt": "8/14/2023",
-      "deleted": false
+      "id": "4"
     },
     {
       "id": "5",
@@ -161,15 +151,6 @@
       "createdAt": "7/22/2022",
       "updatedAt": "12/13/2023",
       "deleted": false
-    },
-    {
-      "id": "eeb4",
-      "title": "title",
-      "language": "langauge",
-      "year": 1709,
-      "author": "author",
-      "country": "country",
-      "pages": 287
     }
   ]
 }

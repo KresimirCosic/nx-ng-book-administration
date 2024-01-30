@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import {
-  FormControl,
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -12,19 +11,10 @@ import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 import { Observable } from 'rxjs'
 
-import { Book } from 'src/app/models/book'
+import { Book, CreateBookForm } from 'src/app/models/book'
 import { createBook } from 'src/app/store/books/actions'
 import { selectBooks } from 'src/app/store/books/selectors'
 import { AppState } from 'src/app/store/state'
-
-type CreateBookForm = {
-  title: FormControl<string>
-  language: FormControl<string>
-  year: FormControl<number>
-  author: FormControl<string>
-  country: FormControl<string>
-  pages: FormControl<number>
-}
 
 @Component({
   selector: 'nx-ng-book-administration-admin',
@@ -49,11 +39,7 @@ export class AdminComponent {
       language: ['', Validators.required],
       year: [
         1,
-        [
-          Validators.required,
-          Validators.min(1),
-          Validators.max(new Date().getFullYear()),
-        ],
+        [Validators.required, Validators.max(new Date().getFullYear())],
       ],
       author: ['', Validators.required],
       country: ['', Validators.required],

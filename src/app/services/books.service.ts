@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
-import { Observable } from 'rxjs'
+import { Observable, delay } from 'rxjs'
 import { APIService } from '../models/api-service'
 import { Book, CreateBook } from '../models/book'
 
@@ -14,14 +14,20 @@ export class BooksService extends APIService {
   }
 
   createBook(book: CreateBook): Observable<Book> {
-    return this._HTTPClient.post<Book>(`${this.baseURL}`, book)
+    return this._HTTPClient.post<Book>(`${this.baseURL}`, book).pipe(delay(500))
   }
 
   getBook(id: string): Observable<Book> {
-    return this._HTTPClient.get<Book>(`${this.baseURL}/${id}`)
+    return this._HTTPClient.get<Book>(`${this.baseURL}/${id}`).pipe(delay(500))
+  }
+
+  updateBook(id: string, book: CreateBook): Observable<Book> {
+    return this._HTTPClient
+      .put<Book>(`${this.baseURL}/${id}`, book)
+      .pipe(delay(500))
   }
 
   getBooks(): Observable<Array<Book>> {
-    return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`)
+    return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`).pipe(delay(500))
   }
 }
