@@ -13,8 +13,8 @@ export class BooksService extends APIService {
     super('books')
   }
 
-  createBook(id: string, book: CreateBook): Observable<Book> {
-    return this._HTTPClient.post<Book>(`${this.baseURL}/${id}`, book)
+  createBook(book: CreateBook): Observable<Book> {
+    return this._HTTPClient.post<Book>(`${this.baseURL}`, book)
   }
 
   getBook(id: string): Observable<Book> {
