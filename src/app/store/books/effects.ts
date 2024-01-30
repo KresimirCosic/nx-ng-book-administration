@@ -8,6 +8,8 @@ import { BooksService } from 'src/app/services/books.service'
 import {
   createBook,
   createBookSuccess,
+  deleteBook,
+  deleteBookSuccess,
   getBook,
   getBookFailure,
   getBookSuccess,
@@ -26,8 +28,8 @@ export class BooksEffects {
     private _router: Router
   ) {}
 
-  createBook$ = createEffect(() =>
-    this._actions$.pipe(
+  createBook$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(createBook),
       mergeMap(({ book }) => {
         return this._booksService.createBook(book).pipe(
@@ -40,10 +42,10 @@ export class BooksEffects {
         )
       })
     )
-  )
+  })
 
-  getBook$ = createEffect(() =>
-    this._actions$.pipe(
+  getBook$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(getBook),
       mergeMap(({ id }) => {
         return this._booksService.getBook(id).pipe(
@@ -56,7 +58,7 @@ export class BooksEffects {
         )
       })
     )
-  )
+  })
 
   updateBook$ = createEffect(() =>
     this._actions$.pipe(
@@ -74,8 +76,27 @@ export class BooksEffects {
     )
   )
 
-  getBooks$ = createEffect(() =>
-    this._actions$.pipe(
+  deleteBook$ = createEffect(() => {
+    return this._actions$.pipe(
+      ofType(deleteBook),
+      mergeMap(({ id }) => {
+        return this._booksService.deleteBook(id).pipe(
+          map(() => {
+            this._router.navigateByUrl('/')
+
+            console.log(id)
+            return deleteBookSuccess()
+          }),
+          catchError((error: HttpErrorResponse) => {
+            return of(getBookFailure({ error: error.message }))
+          })
+        )
+      })
+    )
+  })
+
+  getBooks$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(getBooks),
       mergeMap(() => {
         return this._booksService.getBooks().pipe(
@@ -88,5 +109,5 @@ export class BooksEffects {
         )
       })
     )
-  )
+  })
 }

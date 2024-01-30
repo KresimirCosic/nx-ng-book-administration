@@ -27,6 +27,10 @@ export class BooksService extends APIService {
       .pipe(delay(500))
   }
 
+  deleteBook(id: string): Observable<void> {
+    return this._HTTPClient.delete<void>(`${this.baseURL}/${id}`)
+  }
+
   getBooks(): Observable<Array<Book>> {
     return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`).pipe(delay(500))
   }

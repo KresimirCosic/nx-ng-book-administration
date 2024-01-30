@@ -8,13 +8,21 @@ import {
 } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { ConfirmationService, MessageService } from 'primeng/api'
+import { ButtonModule } from 'primeng/button'
+import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { InputTextModule } from 'primeng/inputtext'
 import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ToastModule } from 'primeng/toast'
 import { Observable, tap } from 'rxjs'
 
-import { ButtonModule } from 'primeng/button'
-import { InputTextModule } from 'primeng/inputtext'
 import { Book, CreateBookForm } from 'src/app/models/book'
-import { getBook, unselectBook, updateBook } from 'src/app/store/books/actions'
+import {
+  deleteBook,
+  getBook,
+  unselectBook,
+  updateBook,
+} from 'src/app/store/books/actions'
 import {
   selectBook,
   selectBookIsLoading,
@@ -31,9 +39,12 @@ import { AppState } from 'src/app/store/state'
     InputTextModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
+    ToastModule,
+    ConfirmDialogModule,
   ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
+  providers: [MessageService, ConfirmationService],
 })
 export class BookComponent implements OnInit, OnDestroy {
   book$: Observable<Book>
@@ -47,7 +58,9 @@ export class BookComponent implements OnInit, OnDestroy {
   constructor(
     private _store: Store<AppState>,
     private _formBuilder: NonNullableFormBuilder,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _confirmationService: ConfirmationService,
+    private _messageService: MessageService
   ) {
     this.book$ = this._store.select(selectBook)
     this.bookIsLoading$ = this._store.select(selectBookIsLoading)
@@ -118,5 +131,38 @@ export class BookComponent implements OnInit, OnDestroy {
         },
       })
     )
+  }
+
+  deleteBook(): void {
+    this._store.dispatch(deleteBook({ id: this.bookId }))
+  }
+
+  deleteBookPrompt(event: Event) {
+    this._confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want to delete the book?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
+      accept: () => {
+        this.deleteBook()
+
+        this._messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Book deleted',
+        })
+      },
+      reject: () => {
+        this._messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Canceled deletion',
+          life: 3000,
+        })
+      },
+    })
   }
 }
