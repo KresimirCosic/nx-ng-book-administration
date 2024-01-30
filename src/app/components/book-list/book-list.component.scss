@@ -16,4 +16,23 @@
       flex: 0 0 24.25%;
     }
   }
+
+  ::ng-deep {
+    .p-card {
+      &-header {
+        overflow: hidden;
+        max-width: 100%;
+
+        img {
+          transition: all 0.35s;
+        }
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
 }
