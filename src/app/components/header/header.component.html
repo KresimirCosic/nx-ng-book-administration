@@ -3,6 +3,9 @@
     <a [routerLink]="['/']">
       <p-button [raised]="true" label="Home"> </p-button>
     </a>
+    <a [routerLink]="['/register']" *ngIf="!user.email">
+      <p-button [raised]="true" label="Register"> </p-button>
+    </a>
     <a [routerLink]="['/login']" *ngIf="!user.email">
       <p-button [raised]="true" label="Login"> </p-button>
     </a>

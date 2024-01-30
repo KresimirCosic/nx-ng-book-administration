@@ -1,1 +1,22 @@
-<p>register works!</p>
+<form id="register-form" class="register-form" [formGroup]="registerFormGroup">
+  <input type="text" pInputText formControlName="email" placeholder="Email" />
+  <input
+    type="text"
+    pInputText
+    formControlName="username"
+    placeholder="Username"
+  />
+  <input
+    type="password"
+    pInputText
+    formControlName="password"
+    placeholder="Password"
+  />
+  <p-button
+    label="Register"
+    type="submit"
+    (onClick)="register()"
+    [disabled]="!registerFormGroup.valid"
+  ></p-button>
+  <p-button (onClick)="navigateLogin()">Already registered?</p-button>
+</form>

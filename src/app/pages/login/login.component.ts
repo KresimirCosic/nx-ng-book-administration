@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
     this.users$ = this._store.select(selectUsers)
 
     this.loginFormGroup = this._formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     })
   }
 
@@ -57,14 +57,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    const email = this.loginFormGroup.controls['email'].value as string
+    const { email } = this.loginFormGroup.controls
     let existingUser = new User()
 
     this.users$
       .pipe(
         tap((users) => {
           users.forEach((user) => {
-            if (user.email === email) existingUser = user
+            if (user.email === email.value) existingUser = user
           })
         })
       )
