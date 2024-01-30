@@ -8,9 +8,26 @@ const createActionName = (actionName: string): string => {
   return `${namespace} ${actionName}`
 }
 
+type CreateBook = Pick<
+  Book,
+  'title' | 'language' | 'year' | 'author' | 'country' | 'pages'
+>
+
 /**
  * Book
  */
+export const createBook = createAction(
+  createActionName('Create Book'),
+  props<{ book: CreateBook }>()
+)
+export const createBookSuccess = createAction(
+  createActionName('Create Book Success'),
+  props<{ book: Book }>()
+)
+export const createBookFailure = createAction(
+  createActionName('Create Book Failure'),
+  props<{ error: string }>()
+)
 export const getBook = createAction(
   createActionName('Get Book'),
   props<{ id: string }>()
@@ -21,6 +38,29 @@ export const getBookSuccess = createAction(
 )
 export const getBookFailure = createAction(
   createActionName('Get Book Failure'),
+  props<{ error: string }>()
+)
+export const updateBook = createAction(
+  createActionName('Update Book'),
+  props<{ book: Partial<CreateBook> }>()
+)
+export const updateBookSuccess = createAction(
+  createActionName('Update Book Success'),
+  props<{ book: Book }>()
+)
+export const updateBookFailure = createAction(
+  createActionName('Update Book Failure'),
+  props<{ error: string }>()
+)
+export const deleteBook = createAction(
+  createActionName('Delete Book'),
+  props<{ id: string }>()
+)
+export const deleteBookSuccess = createAction(
+  createActionName('Delete Book Success')
+)
+export const deleteBookFailure = createAction(
+  createActionName('Delete Book Failure'),
   props<{ error: string }>()
 )
 

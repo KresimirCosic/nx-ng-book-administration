@@ -7,6 +7,14 @@ export const selectBookFeature = (state: AppState) => state.books
 /**
  * Book
  */
+export const selectBookIsCreating = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsCreating
+)
+export const selectBookIsCreatingError = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsCreatingError
+)
 export const selectBook = createSelector(
   selectBookFeature,
   (state) => state.book
@@ -18,6 +26,22 @@ export const selectBookIsLoading = createSelector(
 export const selectBookError = createSelector(
   selectBookFeature,
   (state) => state.bookError
+)
+export const selectBookIsUpdating = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsUpdating
+)
+export const selectBookIsUpdatingError = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsUpdatingError
+)
+export const selectBookIsDeleting = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsDeleting
+)
+export const selectBookIsDeletingError = createSelector(
+  selectBookFeature,
+  (state) => state.bookIsDeletingError
 )
 
 /**
