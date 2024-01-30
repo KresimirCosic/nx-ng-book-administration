@@ -3,28 +3,67 @@
   class="create-book-form"
   [formGroup]="createBookFormGroup"
 >
-  <input type="text" pInputText formControlName="title" placeholder="Title" />
-  <input
-    type="text"
-    pInputText
-    formControlName="language"
-    placeholder="Language"
-  />
-  <input type="number" pInputText formControlName="year" placeholder="Year" />
-  <input type="text" pInputText formControlName="author" placeholder="Author" />
-  <input
-    type="text"
-    pInputText
-    formControlName="country"
-    placeholder="Country"
-  />
-  <input
-    type="number"
-    pInputText
-    formControlName="pages"
-    placeholder="Pages"
-    min="1"
-  />
+  <div class="form-control-container">
+    <label for="title">Title:</label>
+    <input
+      id="title"
+      type="text"
+      pInputText
+      formControlName="title"
+      placeholder="Title"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="language">Language:</label>
+    <input
+      id="language"
+      type="text"
+      pInputText
+      formControlName="language"
+      placeholder="Language"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="year">Year:</label>
+    <input
+      id="year"
+      type="number"
+      pInputText
+      formControlName="year"
+      placeholder="Year"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="author">Author:</label>
+    <input
+      id="author"
+      type="text"
+      pInputText
+      formControlName="author"
+      placeholder="Author"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="country">Country:</label>
+    <input
+      id="country"
+      type="text"
+      pInputText
+      formControlName="country"
+      placeholder="Country"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="pages">Pages:</label>
+    <input
+      id="pages"
+      type="number"
+      pInputText
+      formControlName="pages"
+      placeholder="Pages"
+      min="1"
+    />
+  </div>
   <p-button [disabled]="!createBookFormGroup.valid" (onClick)="createBook()"
     >Create book</p-button
   >
