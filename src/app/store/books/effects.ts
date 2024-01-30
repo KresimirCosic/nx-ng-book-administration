@@ -6,21 +6,12 @@ import { catchError, map, mergeMap, of } from 'rxjs'
 
 import { BooksService } from 'src/app/services/books.service'
 import {
-  createBook,
-  createBookSuccess,
-  createBookFailure,
   getBook,
-  getBooksSuccess,
   getBookFailure,
-  updateBook,
-  updateBookSuccess,
-  updateBookFailure,
-  deleteBook,
-  deleteBookSuccess,
-  deleteBookFailure,
-  getBooks,
   getBookSuccess,
+  getBooks,
   getBooksFailure,
+  getBooksSuccess,
 } from './actions'
 
 @Injectable()

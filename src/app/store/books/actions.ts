@@ -1,17 +1,12 @@
 import { createAction, props } from '@ngrx/store'
 
-import { Book } from '../../models/book'
+import { Book, CreateBook } from '../../models/book'
 
 const createActionName = (actionName: string): string => {
   const namespace = '[Books]'
 
   return `${namespace} ${actionName}`
 }
-
-type CreateBook = Pick<
-  Book,
-  'title' | 'language' | 'year' | 'author' | 'country' | 'pages'
->
 
 /**
  * Book

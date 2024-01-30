@@ -14,3 +14,8 @@ export class Book extends Resource {
     super()
   }
 }
+
+export type CreateBook = Pick<
+  Book,
+  'title' | 'language' | 'year' | 'author' | 'country' | 'pages'
+>
