@@ -34,6 +34,7 @@ export class BooksEffects {
       mergeMap(({ book }) => {
         return this._booksService.createBook(book).pipe(
           map((book) => {
+            this._router.navigateByUrl('/')
             return createBookSuccess({ book })
           }),
           catchError((error: HttpErrorResponse) => {
