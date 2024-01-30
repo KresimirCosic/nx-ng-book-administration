@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms'
 import { Resource } from './resource'
 
 export class Book extends Resource {
@@ -19,3 +20,12 @@ export type CreateBook = Pick<
   Book,
   'title' | 'language' | 'year' | 'author' | 'country' | 'pages'
 >
+
+export type CreateBookForm = {
+  title: FormControl<string>
+  language: FormControl<string>
+  year: FormControl<number>
+  author: FormControl<string>
+  country: FormControl<string>
+  pages: FormControl<number>
+}

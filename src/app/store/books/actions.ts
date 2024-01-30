@@ -37,7 +37,7 @@ export const getBookFailure = createAction(
 )
 export const updateBook = createAction(
   createActionName('Update Book'),
-  props<{ book: Partial<CreateBook> }>()
+  props<{ id: string; book: CreateBook }>()
 )
 export const updateBookSuccess = createAction(
   createActionName('Update Book Success'),
