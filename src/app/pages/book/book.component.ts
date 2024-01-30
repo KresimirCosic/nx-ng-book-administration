@@ -17,6 +17,8 @@ import { ToastModule } from 'primeng/toast'
 import { Observable, tap } from 'rxjs'
 
 import { Book, CreateBookForm } from 'src/app/models/book'
+import { User } from 'src/app/models/user'
+import { selectUser } from 'src/app/store/authentication/selectors'
 import {
   deleteBook,
   getBook,
@@ -29,6 +31,7 @@ import {
   selectBookIsUpdating,
 } from 'src/app/store/books/selectors'
 import { AppState } from 'src/app/store/state'
+import { Role } from 'src/app/types/role'
 
 @Component({
   selector: 'nx-ng-book-administration-book',
@@ -47,6 +50,7 @@ import { AppState } from 'src/app/store/state'
   providers: [MessageService, ConfirmationService],
 })
 export class BookComponent implements OnInit, OnDestroy {
+  user$: Observable<User>
   book$: Observable<Book>
   bookIsLoading$: Observable<boolean>
   bookIsUpdating$: Observable<boolean>
@@ -55,6 +59,12 @@ export class BookComponent implements OnInit, OnDestroy {
 
   bookId: string = ''
 
+  isAdmin(user: User | null): boolean {
+    if (user) return user.role === Role.ADMIN
+
+    return false
+  }
+
   constructor(
     private _store: Store<AppState>,
     private _formBuilder: NonNullableFormBuilder,
@@ -62,6 +72,7 @@ export class BookComponent implements OnInit, OnDestroy {
     private _confirmationService: ConfirmationService,
     private _messageService: MessageService
   ) {
+    this.user$ = this._store.select(selectUser)
     this.book$ = this._store.select(selectBook)
     this.bookIsLoading$ = this._store.select(selectBookIsLoading)
     this.bookIsUpdating$ = this._store.select(selectBookIsUpdating)
