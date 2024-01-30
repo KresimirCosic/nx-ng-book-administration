@@ -1,18 +1,27 @@
 <form id="login-form" class="login-form" [formGroup]="loginFormGroup">
-  <input
-    type="text"
-    pInputText
-    formControlName="email"
-    required
-    placeholder="Email"
-  />
-  <input
-    type="password"
-    pInputText
-    formControlName="password"
-    required
-    placeholder="Password"
-  />
+  <div class="form-control-container">
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      type="text"
+      pInputText
+      formControlName="email"
+      required
+      placeholder="Email"
+    />
+  </div>
+
+  <div class="form-control-container">
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      pInputText
+      formControlName="password"
+      required
+      placeholder="Password"
+    />
+  </div>
   <p-button
     label="Login"
     type="submit"

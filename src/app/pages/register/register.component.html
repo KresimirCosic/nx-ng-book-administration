@@ -1,18 +1,42 @@
 <form id="register-form" class="register-form" [formGroup]="registerFormGroup">
-  <input type="text" pInputText formControlName="email" placeholder="Email" />
-  <input
-    type="text"
-    pInputText
-    formControlName="username"
-    placeholder="Username"
-  />
-  <input
-    type="password"
-    pInputText
-    formControlName="password"
-    placeholder="Password"
-  />
-  <p-checkbox formControlName="isAdmin" [binary]="true"></p-checkbox>
+  <div class="form-control-container">
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      type="text"
+      pInputText
+      formControlName="email"
+      placeholder="Email"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="username">Username:</label>
+    <input
+      id="username"
+      type="text"
+      pInputText
+      formControlName="username"
+      placeholder="Username"
+    />
+  </div>
+  <div class="form-control-container">
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      pInputText
+      formControlName="password"
+      placeholder="Password"
+    />
+  </div>
+  <div class="form-control-container" [ngStyle]="{ alignItems: 'center' }">
+    <label for="is-admin">User should be an administrator?</label>
+    <p-checkbox
+      id="is-admin"
+      formControlName="isAdmin"
+      [binary]="true"
+    ></p-checkbox>
+  </div>
   <p-button
     label="Register"
     type="submit"
