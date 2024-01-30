@@ -6,6 +6,8 @@ import { catchError, map, mergeMap, of } from 'rxjs'
 
 import { BooksService } from 'src/app/services/books.service'
 import {
+  createBook,
+  createBookSuccess,
   getBook,
   getBookFailure,
   getBookSuccess,
@@ -21,6 +23,22 @@ export class BooksEffects {
     private _booksService: BooksService,
     private _router: Router
   ) {}
+
+  createBook$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(createBook),
+      mergeMap(({ book }) =>
+        this._booksService.createBook(book).pipe(
+          map((book) => {
+            return createBookSuccess({ book })
+          }),
+          catchError((error: HttpErrorResponse) => {
+            return of(getBookFailure({ error: error.message }))
+          })
+        )
+      )
+    )
+  )
 
   getBook$ = createEffect(() =>
     this._actions$.pipe(

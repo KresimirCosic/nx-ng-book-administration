@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import {
-  FormBuilder,
+  FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
@@ -12,8 +13,18 @@ import { InputTextModule } from 'primeng/inputtext'
 import { Observable } from 'rxjs'
 
 import { Book } from 'src/app/models/book'
+import { createBook } from 'src/app/store/books/actions'
 import { selectBooks } from 'src/app/store/books/selectors'
 import { AppState } from 'src/app/store/state'
+
+type CreateBookForm = {
+  title: FormControl<string>
+  language: FormControl<string>
+  year: FormControl<number>
+  author: FormControl<string>
+  country: FormControl<string>
+  pages: FormControl<number>
+}
 
 @Component({
   selector: 'nx-ng-book-administration-admin',
@@ -25,11 +36,11 @@ import { AppState } from 'src/app/store/state'
 export class AdminComponent {
   books$: Observable<Array<Book>>
 
-  createBookFormGroup: FormGroup
+  createBookFormGroup: FormGroup<CreateBookForm>
 
   constructor(
     private readonly _store: Store<AppState>,
-    private _formBuilder: FormBuilder
+    private _formBuilder: NonNullableFormBuilder
   ) {
     this.books$ = this._store.select(selectBooks)
 
@@ -46,18 +57,25 @@ export class AdminComponent {
       ],
       author: ['', Validators.required],
       country: ['', Validators.required],
-      pages: [
-        1,
-        [
-          Validators.required,
-          Validators.min(1),
-          Validators.max(new Date().getFullYear()),
-        ],
-      ],
+      pages: [1, [Validators.required, Validators.min(1)]],
     })
   }
 
   createBook(): void {
-    // TODO
+    const { title, language, year, author, country, pages } =
+      this.createBookFormGroup.controls
+
+    this._store.dispatch(
+      createBook({
+        book: {
+          title: title.value,
+          language: language.value,
+          year: year.value,
+          author: author.value,
+          country: country.value,
+          pages: pages.value,
+        },
+      })
+    )
   }
 }

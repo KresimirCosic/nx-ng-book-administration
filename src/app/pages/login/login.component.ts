@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
 import {
-  FormBuilder,
+  FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
@@ -17,6 +18,11 @@ import { getUsers, login } from 'src/app/store/authentication/actions'
 import { selectUsers } from 'src/app/store/authentication/selectors'
 import { AppState } from 'src/app/store/state'
 
+type LoginForm = {
+  email: FormControl<string>
+  password: FormControl<string>
+}
+
 @Component({
   selector: 'nx-ng-book-administration-login',
   standalone: true,
@@ -27,11 +33,11 @@ import { AppState } from 'src/app/store/state'
 export class LoginComponent implements OnInit {
   users$: Observable<Array<User>>
 
-  loginFormGroup: FormGroup
+  loginFormGroup: FormGroup<LoginForm>
 
   constructor(
     private readonly _store: Store<AppState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: NonNullableFormBuilder,
     private _router: Router
   ) {
     this.users$ = this._store.select(selectUsers)

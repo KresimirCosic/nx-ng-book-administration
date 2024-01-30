@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
@@ -27,7 +27,7 @@ export class BookComponent {
 
   constructor(
     private _store: Store<AppState>,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: NonNullableFormBuilder,
     private _route: ActivatedRoute,
     private _bookService: BooksService
   ) {
