@@ -28,25 +28,30 @@ export class AuthenticationEffects {
     private _router: Router
   ) {}
 
-  register$ = createEffect(() =>
-    this._actions$.pipe(
+  register$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(register),
-      mergeMap(({ email, password, username }) =>
-        this._authenticationService.register(email, password, username).pipe(
-          map(() => registerSuccess()),
-          catchError((error: HttpErrorResponse) => {
-            return of(registerFailure({ error: error.message }))
-          })
-        )
-      )
+      mergeMap(({ email, password, username }) => {
+        return this._authenticationService
+          .register(email, password, username)
+          .pipe(
+            map(() => {
+              this._router.navigateByUrl('/login')
+              return registerSuccess()
+            }),
+            catchError((error: HttpErrorResponse) => {
+              return of(registerFailure({ error: error.message }))
+            })
+          )
+      })
     )
-  )
+  })
 
-  login$ = createEffect(() =>
-    this._actions$.pipe(
+  login$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(login),
-      mergeMap(({ id }) =>
-        this._authenticationService.login(id).pipe(
+      mergeMap(({ id }) => {
+        return this._authenticationService.login(id).pipe(
           map((user) => {
             this._router.navigateByUrl('/')
             return loginSuccess({ user })
@@ -55,15 +60,15 @@ export class AuthenticationEffects {
             return of(loginFailure({ error: error.message }))
           })
         )
-      )
+      })
     )
-  )
+  })
 
-  logout$ = createEffect(() =>
-    this._actions$.pipe(
+  logout$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(logout),
-      mergeMap(() =>
-        this._authenticationService.logout().pipe(
+      mergeMap(() => {
+        return this._authenticationService.logout().pipe(
           map(() => {
             this._router.navigateByUrl('/login')
             return logoutSuccess()
@@ -72,21 +77,21 @@ export class AuthenticationEffects {
             return of(logoutFailure({ error: error.message }))
           })
         )
-      )
+      })
     )
-  )
+  })
 
-  getUsers$ = createEffect(() =>
-    this._actions$.pipe(
+  getUsers$ = createEffect(() => {
+    return this._actions$.pipe(
       ofType(getUsers),
-      mergeMap(() =>
-        this._authenticationService.getUsers().pipe(
+      mergeMap(() => {
+        return this._authenticationService.getUsers().pipe(
           map((users) => getUsersSuccess({ users })),
           catchError((error: HttpErrorResponse) => {
             return of(getUsersFailure({ error: error.message }))
           })
         )
-      )
+      })
     )
-  )
+  })
 }

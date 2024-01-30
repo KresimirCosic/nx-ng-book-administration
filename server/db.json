@@ -23,6 +23,48 @@
   ],
   "books": [
     {
+      "id": "1",
+      "author": "Chinua Achebe",
+      "country": "Nigeria",
+      "imageLink": "images/things-fall-apart.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
+      "pages": 209,
+      "title": "Things Fall Apart",
+      "year": 1958,
+      "createdAt": "12/29/2022",
+      "updatedAt": "5/6/2023",
+      "deleted": false
+    },
+    {
+      "id": "2",
+      "author": "Hans Christian Andersen",
+      "country": "Denmark",
+      "imageLink": "images/fairy-tales.jpg",
+      "language": "Danish",
+      "link": "https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.\n",
+      "pages": 784,
+      "title": "Fairy tales",
+      "year": 1836,
+      "createdAt": "4/11/2022",
+      "updatedAt": "12/15/2023",
+      "deleted": false
+    },
+    {
+      "id": "3",
+      "author": "Dante Alighieri",
+      "country": "Italy",
+      "imageLink": "images/the-divine-comedy.jpg",
+      "language": "Italian",
+      "link": "https://en.wikipedia.org/wiki/Divine_Comedy\n",
+      "pages": 928,
+      "title": "The Divine Comedy",
+      "year": 1315,
+      "createdAt": "1/14/2022",
+      "updatedAt": "7/11/2023",
+      "deleted": false
+    },
+    {
       "id": "4",
       "author": "Unknown",
       "country": "Sumer and Akkadian Empire",
@@ -90,6 +132,34 @@
       "year": 1813,
       "createdAt": "2/21/2022",
       "updatedAt": "5/5/2023",
+      "deleted": false
+    },
+    {
+      "id": "9",
+      "author": "Honoré de Balzac",
+      "country": "France",
+      "imageLink": "images/le-pere-goriot.jpg",
+      "language": "French",
+      "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
+      "pages": 443,
+      "title": "Le Père Goriot",
+      "year": 1835,
+      "createdAt": "9/22/2022",
+      "updatedAt": "10/10/2023",
+      "deleted": false
+    },
+    {
+      "id": "10",
+      "author": "Samuel Beckett",
+      "country": "Republic of Ireland",
+      "imageLink": "images/molloy-malone-dies-the-unnamable.jpg",
+      "language": "French, English",
+      "link": "https://en.wikipedia.org/wiki/Molloy_(novel)\n",
+      "pages": 256,
+      "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
+      "year": 1952,
+      "createdAt": "7/22/2022",
+      "updatedAt": "12/13/2023",
       "deleted": false
     }
   ]

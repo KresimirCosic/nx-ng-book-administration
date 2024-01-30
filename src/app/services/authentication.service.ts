@@ -18,7 +18,7 @@ export class AuthenticationService extends APIService {
     password: string,
     username: string
   ): Observable<void> {
-    return this._HTTPClient.post<void>(`${this.baseURL}/register`, {
+    return this._HTTPClient.post<void>(`${this.baseURL}`, {
       email,
       password,
       username,
