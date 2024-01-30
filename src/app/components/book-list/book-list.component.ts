@@ -28,4 +28,8 @@ export class BookListComponent {
     this.user$ = this._store.select(selectUser)
     this.books$ = this._store.select(selectBooks)
   }
+
+  imagePath(imageLink: string): string {
+    return `assets/${imageLink}`
+  }
 }
