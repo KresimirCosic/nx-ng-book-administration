@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
-import { APIService } from '../models/api-service'
 import { Observable } from 'rxjs'
-import { Book } from '../models/book'
+import { APIService } from '../models/api-service'
+import { Book, CreateBook } from '../models/book'
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,15 @@ export class BooksService extends APIService {
     super('books')
   }
 
-  getBooks(): Observable<Array<Book>> {
-    return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`)
+  createBook(id: string, book: CreateBook): Observable<Book> {
+    return this._HTTPClient.post<Book>(`${this.baseURL}/${id}`, book)
   }
 
   getBook(id: string): Observable<Book> {
     return this._HTTPClient.get<Book>(`${this.baseURL}/${id}`)
+  }
+
+  getBooks(): Observable<Array<Book>> {
+    return this._HTTPClient.get<Array<Book>>(`${this.baseURL}`)
   }
 }

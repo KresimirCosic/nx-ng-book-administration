@@ -2,21 +2,15 @@ import { createReducer, on } from '@ngrx/store'
 import { cloneDeep } from 'lodash-es'
 
 import {
-  createBook,
-  createBookSuccess,
-  createBookFailure,
   getBook,
   getBookFailure,
   getBookSuccess,
-  updateBook,
-  updateBookSuccess,
-  updateBookFailure,
-  deleteBook,
-  deleteBookSuccess,
-  deleteBookFailure,
   getBooks,
   getBooksFailure,
   getBooksSuccess,
+  updateBook,
+  updateBookFailure,
+  updateBookSuccess,
 } from './actions'
 import { BookState } from './state'
 
@@ -39,7 +33,7 @@ export const booksReducer = createReducer(
     const clonedState = cloneDeep(state)
     return { ...clonedState, bookIsLoading: false, bookError: error }
   }),
-  on(updateBook, (state, { book }) => {
+  on(updateBook, (state) => {
     const clonedState = cloneDeep(state)
     return { ...clonedState, bookIsUpdating: true }
   }),
