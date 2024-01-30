@@ -13,7 +13,12 @@ const createActionName = (actionName: string): string => {
  */
 export const register = createAction(
   createActionName('Register'),
-  props<{ email: string; password: string; username: string }>()
+  props<{
+    email: string
+    password: string
+    username: string
+    isAdmin: boolean
+  }>()
 )
 export const registerSuccess = createAction(
   createActionName('Register Success')

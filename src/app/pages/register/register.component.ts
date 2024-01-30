@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 import { register } from 'src/app/store/authentication/actions'
+import { CheckboxModule } from 'primeng/checkbox'
 
 import { AppState } from 'src/app/store/state'
 
@@ -19,12 +20,19 @@ type RegisterForm = {
   email: FormControl<string>
   username: FormControl<string>
   password: FormControl<string>
+  isAdmin: FormControl<boolean>
 }
 
 @Component({
   selector: 'nx-ng-book-administration-register',
   standalone: true,
-  imports: [CommonModule, ButtonModule, InputTextModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    CheckboxModule,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -40,17 +48,20 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]],
+      isAdmin: [false],
     })
   }
 
   register(): void {
-    const { email, password, username } = this.registerFormGroup.controls
+    const { email, password, username, isAdmin } =
+      this.registerFormGroup.controls
 
     this._store.dispatch(
       register({
         email: email.value,
         password: password.value,
         username: username.value,
+        isAdmin: isAdmin.value,
       })
     )
   }
