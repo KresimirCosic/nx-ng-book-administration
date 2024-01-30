@@ -8,7 +8,8 @@ export class Book extends Resource {
     public language: string = '',
     public country: string = '',
     public pages: number = 0,
-    public link: string = ''
+    public link: string = '',
+    public imageLink: string = ''
   ) {
     super()
   }
