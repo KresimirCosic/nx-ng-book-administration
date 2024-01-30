@@ -47,7 +47,6 @@ import { Role } from 'src/app/types/role'
   ],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
-  providers: [MessageService, ConfirmationService],
 })
 export class BookComponent implements OnInit, OnDestroy {
   user$: Observable<User>

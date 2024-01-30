@@ -23,20 +23,6 @@
   ],
   "books": [
     {
-      "id": "1",
-      "author": "Chinua Achebe",
-      "country": "Nigeria",
-      "imageLink": "images/things-fall-apart.jpg",
-      "language": "English",
-      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
-      "pages": 209,
-      "title": "Things Fall Apart",
-      "year": 1958,
-      "createdAt": "12/29/2022",
-      "updatedAt": "5/6/2023",
-      "deleted": false
-    },
-    {
       "id": "2",
       "author": "Hans Christian Andersen",
       "country": "Denmark",
