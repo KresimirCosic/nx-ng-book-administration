@@ -1,55 +1,62 @@
 <ng-container *ngIf="book$ | async as book">
   <ng-container *ngIf="{ value: bookIsUpdating$ | async } as bookIsUpdating">
-    <div class="form-container">
-      <form
-        id="update-book-form"
-        class="update-book-form"
-        [formGroup]="updateFormGroup"
-        *ngIf="!bookIsUpdating.value"
-      >
-        <input
-          type="text"
-          pInputText
-          formControlName="title"
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          pInputText
-          formControlName="language"
-          placeholder="Language"
-        />
-        <input
-          type="number"
-          pInputText
-          formControlName="year"
-          placeholder="Year"
-        />
-        <input
-          type="text"
-          pInputText
-          formControlName="author"
-          placeholder="Author"
-        />
-        <input
-          type="text"
-          pInputText
-          formControlName="country"
-          placeholder="Country"
-        />
-        <input
-          type="number"
-          pInputText
-          formControlName="pages"
-          placeholder="Pages"
-          min="1"
-        />
+    <ng-container *ngIf="{ value: bookIsLoading$ | async } as bookIsLoading">
+      <div class="form-container">
+        <form
+          id="update-book-form"
+          class="update-book-form"
+          [formGroup]="updateFormGroup"
+          *ngIf="!(bookIsUpdating.value || bookIsLoading.value)"
+        >
+          <input
+            type="text"
+            pInputText
+            formControlName="title"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            pInputText
+            formControlName="language"
+            placeholder="Language"
+          />
+          <input
+            type="number"
+            pInputText
+            formControlName="year"
+            placeholder="Year"
+          />
+          <input
+            type="text"
+            pInputText
+            formControlName="author"
+            placeholder="Author"
+          />
+          <input
+            type="text"
+            pInputText
+            formControlName="country"
+            placeholder="Country"
+          />
+          <input
+            type="number"
+            pInputText
+            formControlName="pages"
+            placeholder="Pages"
+            min="1"
+          />
 
-        <p-button [disabled]="!updateFormGroup.valid" (onClick)="updateBook()">
-          Update book
-        </p-button>
-      </form>
-      <p-progressSpinner *ngIf="bookIsUpdating.value"></p-progressSpinner>
-    </div>
+          <p-button
+            [disabled]="!updateFormGroup.valid"
+            (onClick)="updateBook()"
+          >
+            Update book
+          </p-button>
+        </form>
+        <p-progressSpinner
+          *ngIf="bookIsUpdating.value || bookIsLoading.value"
+        ></p-progressSpinner>
+      </div>
+    </ng-container>
   </ng-container>
 </ng-container>
