@@ -19,6 +19,7 @@ import {
   registerFailure,
   registerSuccess,
 } from './actions'
+import { Role } from 'src/app/types/role'
 
 @Injectable()
 export class AuthenticationEffects {
@@ -31,9 +32,11 @@ export class AuthenticationEffects {
   register$ = createEffect(() => {
     return this._actions$.pipe(
       ofType(register),
-      mergeMap(({ email, password, username }) => {
+      mergeMap(({ email, password, username, isAdmin }) => {
+        const role = isAdmin ? Role.ADMIN : Role.USER
+
         return this._authenticationService
-          .register(email, password, username)
+          .register(email, password, username, role)
           .pipe(
             map(() => {
               this._router.navigateByUrl('/login')

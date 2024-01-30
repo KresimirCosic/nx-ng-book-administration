@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs'
 
 import { APIService } from '../models/api-service'
 import { User } from '../models/user'
+import { Role } from '../types/role'
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,14 @@ export class AuthenticationService extends APIService {
   register(
     email: string,
     password: string,
-    username: string
+    username: string,
+    role: Role
   ): Observable<void> {
     return this._HTTPClient.post<void>(`${this.baseURL}`, {
       email,
       password,
       username,
+      role,
     })
   }
 
