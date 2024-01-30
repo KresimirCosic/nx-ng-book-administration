@@ -1,1 +1,9 @@
-<nx-ng-book-administration-book-list></nx-ng-book-administration-book-list>
+<ng-container *ngIf="{ value: booksAreLoading$ | async } as booksAreLoading">
+  <div class="container">
+    <nx-ng-book-administration-book-list
+      *ngIf="booksAreLoading"
+    ></nx-ng-book-administration-book-list>
+
+    <p-progressSpinner *ngIf="booksAreLoading.value"></p-progressSpinner>
+  </div>
+</ng-container>

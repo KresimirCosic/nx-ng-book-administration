@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -8,14 +8,18 @@ import {
 } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { Observable, tap } from 'rxjs'
 import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { Observable, tap } from 'rxjs'
 
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 import { Book, CreateBookForm } from 'src/app/models/book'
-import { getBook, updateBook } from 'src/app/store/books/actions'
-import { selectBook, selectBookIsUpdating } from 'src/app/store/books/selectors'
+import { getBook, unselectBook, updateBook } from 'src/app/store/books/actions'
+import {
+  selectBook,
+  selectBookIsLoading,
+  selectBookIsUpdating,
+} from 'src/app/store/books/selectors'
 import { AppState } from 'src/app/store/state'
 
 @Component({
@@ -31,8 +35,9 @@ import { AppState } from 'src/app/store/state'
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss',
 })
-export class BookComponent {
+export class BookComponent implements OnInit, OnDestroy {
   book$: Observable<Book>
+  bookIsLoading$: Observable<boolean>
   bookIsUpdating$: Observable<boolean>
 
   updateFormGroup: FormGroup<CreateBookForm>
@@ -45,6 +50,7 @@ export class BookComponent {
     private _route: ActivatedRoute
   ) {
     this.book$ = this._store.select(selectBook)
+    this.bookIsLoading$ = this._store.select(selectBookIsLoading)
     this.bookIsUpdating$ = this._store.select(selectBookIsUpdating)
 
     this.updateFormGroup = this._formBuilder.group({
@@ -62,6 +68,10 @@ export class BookComponent {
 
   ngOnInit(): void {
     this.getBook()
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(unselectBook())
   }
 
   getBook(): void {

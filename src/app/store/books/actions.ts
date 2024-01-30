@@ -58,6 +58,7 @@ export const deleteBookFailure = createAction(
   createActionName('Delete Book Failure'),
   props<{ error: string }>()
 )
+export const unselectBook = createAction(createActionName('Unselect Book'))
 
 /**
  * Books
@@ -71,3 +72,4 @@ export const getBooksFailure = createAction(
   createActionName('Get Books Failure'),
   props<{ error: string }>()
 )
+export const unselectBooks = createAction(createActionName('Unselect Books'))
