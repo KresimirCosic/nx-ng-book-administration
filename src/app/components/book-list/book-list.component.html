@@ -3,7 +3,16 @@
     <li class="book-list-item" *ngFor="let book of books">
       <p-card>
         <ng-template pTemplate="header">
-          <img alt="Card" [src]="imagePath(book.imageLink)" />
+          <img
+            [alt]="
+              book.imageLink ? 'Card image banner' : 'Image banner placeholder'
+            "
+            [src]="
+              book.imageLink
+                ? imagePath(book.imageLink)
+                : 'https://placehold.jp/400x600.png'
+            "
+          />
         </ng-template>
 
         <ng-template pTemplate="title">
