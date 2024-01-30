@@ -3,6 +3,7 @@ import { cloneDeep } from 'lodash-es'
 
 import { Book } from 'src/app/models/book'
 import {
+  deleteBook,
   getBook,
   getBookFailure,
   getBookSuccess,

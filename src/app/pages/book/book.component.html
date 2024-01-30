@@ -52,7 +52,15 @@
           >
             Update book
           </p-button>
+
+          <p-button
+            (click)="deleteBookPrompt($event)"
+            icon="pi pi-check"
+            label="Delete Book"
+            styleClass="p-button-danger"
+          ></p-button>
         </form>
+
         <p-progressSpinner
           *ngIf="bookIsUpdating.value || bookIsLoading.value"
         ></p-progressSpinner>
@@ -60,3 +68,6 @@
     </ng-container>
   </ng-container>
 </ng-container>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
