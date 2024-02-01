@@ -37,4 +37,12 @@ Start the `json-server` instance (the `_db.json` file is there just to backup th
 npx json-server --port 9229 server/db.json
 ```
 
-To start the development server run `nx serve nx-ng-book-administration`. Open your browser and navigate to http://localhost:4200/. Happy coding!
+To start the development server run `nx serve nx-ng-book-administration` (probably prefix with `npx` if CLI not installed globally) or just run regular Angular `start` command. Open your browser and navigate to http://localhost:4200/.
+
+## Observations
+
+- Angular has changed a lot in the last couple of years, I am not a big fan of `standalone` components as it completely tries to evade the structural organization of modules (following the route of Vue and React for some reason).
+
+- Testing has changed from Karma to Jest by default (no idea why, why not evade Jest in general then and go with Vitest since it's better). I am unsure why there is no browser instance when writing tests like before (even though I failed that part).
+
+- Unsure about the JWT functionality how is that achieveable via `json-server`.
